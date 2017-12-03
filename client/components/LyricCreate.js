@@ -18,6 +18,10 @@ class LyricCreate extends Component {
                 content: this.state.content,
                 songId: this.props.songId
             }
+        }).then(() => {
+            this.setState({
+                content: ''
+            })
         });
     }
 
@@ -39,6 +43,7 @@ mutation AddLyricToSong($content: String, $songId: ID) {
     addLyricToSong(content: $content, songId: $songId) {
         id
         lyrics {
+            id
             content
         }
     }
