@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-apollo';
+import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { Link, hashHistory } from 'react-router';
 
 class SongCreate extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
-        this.state = { title: ''};
+        this.state = { title: '' };
     }
 
     onSubmit(e) {
@@ -16,6 +17,8 @@ class SongCreate extends Component {
             variables: {
                 title: this.state.title
             }
+        }).then(() => {
+            hashHistory.push('/');
         });
     }
 
@@ -23,10 +26,11 @@ class SongCreate extends Component {
         return (
             <div>
                 <h3>Create a new song</h3>
+                <Link to="/">Back</Link>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Song Title:</label>
-                    <input 
-                        onChange={e => this.setState({title: e.target.value})}
+                    <input
+                        onChange={e => this.setState({ title: e.target.value })}
                         value={this.state.title}
                     />
                 </form>
