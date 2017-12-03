@@ -6,12 +6,16 @@ import fetchSong from '../queries/fetchSong';
 
 class SongDetail extends Component {
     render() {
-        console.log(this.props);
+
+
+        const { song } = this.props.data; // if (this.props.data.loading) { return <div>Loading....</div> }
+        if (!song) { return <div>Loading....</div> } // If it's quite fast do not display anything at all as a case
+
         return (
             <div>
-                <h3>Song Detail</h3>
-                {/* <Link to="/">Back</Link>
-                <form onSubmit={this.onSubmit.bind(this)}>
+                <h3>{song.title}</h3>
+                <Link to="/">Back</Link>
+                {/*<form onSubmit={this.onSubmit.bind(this)}>
                     <label>Song Title:</label>
                     <input
                         onChange={e => this.setState({ title: e.target.value })}
@@ -24,5 +28,5 @@ class SongDetail extends Component {
 }
 
 export default graphql(fetchSong, {
-    options: (props) => { return { variables: { id: props.params.id} } }
+    options: (props) => { return { variables: { id: props.params.id } } }
 })(SongDetail);;
